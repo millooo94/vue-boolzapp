@@ -1,0 +1,168 @@
+body {
+    background-color: #dadbd4 !important;
+    height: 100vh;
+    position: relative !important;
+}
+
+.green-bar {
+    width: 100%;
+    height: 12%;
+    background-color: #009688;
+}
+
+.chat-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 82%;
+    height: 95%;
+}
+
+aside {
+    width: 30%;
+    height: 100%;
+}
+
+aside header {
+    height: 3.5rem;
+    background-color: #eaeaea;
+}
+
+aside header .left-block {
+    width: 50%;
+}
+
+.img-container {
+    clip-path: circle();
+    width: 25%;
+    object-fit: contain;
+}
+
+.username {
+    font-size: .8rem;
+    color: black;
+    font-weight: bold;
+}
+
+
+aside header .right-block i {
+    color: #b1b1b1;
+}
+
+aside .search {
+    height: 7rem;
+}
+
+aside .search .notification {
+    height: 66%;
+    background-color: #8edafc;
+}
+
+aside .search .notification .icon-container {
+    clip-path: circle();
+    padding: .5rem;
+    background-color: white;
+}
+
+aside .search .notification .icon-container i {
+    color: #8edafc;
+}
+
+aside .search .notification .right-block {
+    display: flex;
+    flex-direction: column;
+}
+
+aside .search .notification span {
+    font-size: .8rem;
+    font-weight: bold;
+}
+
+aside .search .notification a {
+    font-size: .7rem;
+    color: #6b7376;
+}
+
+aside .search .write-search {
+    height: 34%;
+    background-color: #fafafa;
+}
+
+aside .search .write-search .icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15%;
+    height: 75%;
+    background-color: white;
+}
+
+aside .search .write-search .icon-container i {
+    color: #6b7376;
+}
+
+aside .search .write-search input {
+    width: 82%;
+    height: 75%;
+    border-radius: 2px;
+    background-color: white;
+    border: none;
+    font-size: .8rem;
+    padding: .7rem;
+}
+
+aside .chats {
+    height: calc(100% - 10.5rem);
+    background-color: white;
+    overflow-y: scroll;
+}
+
+.contacts:hover {
+    background-color: #e9ebeb;
+}
+
+.chats .contacts .img-container {
+    width: 15%;
+}
+
+
+.contents {
+    width: 70%;
+    height: 100%;
+}
+
+
+.contents header {
+    height: 3.5rem;
+    background-color: #eaeaea;
+}
+
+.contents .chat {
+    height: calc(100% - 7rem);
+    background-image: url('../img/mine.jpg');
+    background-size: contain;
+    overflow-y: scroll;
+}
+
+.contents .write-message {
+    height: 3.5rem;
+    background-color: #f3eeea;
+}
+
+.write-message input {
+    width: 80%;
+    height: 75%;
+    border: none;
+    border-radius: 5px;
+    font-size: .8rem;
+    padding: .7rem;
+}
+
+input::placeholder {
+    font-size: .8rem;
+}
+
+.write-message i {
+    color: #6b7376;
+}
