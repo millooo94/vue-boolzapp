@@ -33,13 +33,13 @@ aside header .left-block {
     width: 50%;
 }
 
-.img-container {
+aside header .img-container {
     clip-path: circle();
     width: 25%;
     object-fit: contain;
 }
 
-.username {
+aside header .username {
     font-size: .8rem;
     color: black;
     font-weight: bold;
@@ -138,6 +138,28 @@ aside .chats {
     background-color: #eaeaea;
 }
 
+.contents header .left-block {
+    width: 50%;
+}
+
+.contents header .img-container {
+    clip-path: circle();
+    width: 10.17%;
+    object-fit: contain;
+}
+
+.contents header .username {
+    font-size: .8rem;
+    color: black;
+    font-weight: bold;
+}
+
+
+.contents header .right-block i {
+    color: #b1b1b1;
+}
+
+
 .contents .chat {
     height: calc(100% - 7rem);
     background-image: url('../img/mine.jpg');
@@ -165,4 +187,34 @@ input::placeholder {
 
 .write-message i {
     color: #6b7376;
+}
+
+
+.chat {
+    padding: 3rem 5rem 3rem 5rem;
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.sent {
+    width: fit-content;
+    padding: .6rem;
+    border-radius: 6px;
+    background-color: white;
+    color: black;
+    font-size: .8rem;
+    align-self: flex-end;
+}
+
+.received {
+    width: fit-content;
+    padding: .6rem;
+    border-radius: 6px;
+    background-color: #d5f9ba;
+    color: black;
+    font-size: .8rem;
+    align-self: flex-start;
 }
