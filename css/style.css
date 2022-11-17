@@ -199,26 +199,23 @@ input::placeholder {
     flex-wrap: wrap;
 }
 
-.received {
+.chat .message {
+    position: relative;
     width: 40%;
     padding: .2rem;
     border-radius: 6px;
-    background-color: white;
     color: black;
     font-size: .8rem;
+}
+
+.received {
+    background-color: white;
     align-self: flex-start;
-    position: relative;
 }
 
 .sent {
-    width: 40%;
-    padding: .2rem;
-    border-radius: 6px;
     background-color: #d5f9ba;
-    color: black;
-    font-size: .8rem;
     align-self: flex-end;
-    position: relative;
 }
 
 
@@ -238,6 +235,20 @@ input::placeholder {
     align-items: center;
     padding: .6rem;
 }
+
+.menu {
+    position: absolute;
+    bottom: -1.5rem;
+    right: 4rem;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    border: none;
+    background-color: white;
+    font-size: .8rem;
+}
+
 
 .chats .contacts {
     position: relative;
@@ -270,11 +281,10 @@ input::placeholder {
 
 .contacts .contacts-text-container .date {
     position: absolute;
-    up: .2rem;
+    top: .2rem;
     right: .2rem;
     display: flex;
     justify-content: flex-end;
     font-size: .6rem;
     color: #6b7376;
-
 }

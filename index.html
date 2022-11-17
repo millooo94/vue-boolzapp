@@ -48,7 +48,7 @@
                     </div>
                 </section>
                 <section class="chats">
-                    <div class="contacts d-flex align-items-start px-3 py-2" v-show="includesCharacters(chat)" v-for="(chat, i) in contacts" @click="selectContact(i)">
+                    <div class="contacts d-flex align-items-start px-3 py-2" v-if="includesCharacters(chat)" v-for="(chat, i) in contacts" @click="selectContact(i)">
                         <div class="img-container me-2">
                             <img class="img-fluid" :src="'img/' + chat.avatar" alt="">
                         </div>
@@ -77,9 +77,13 @@
                     </header>
                 </header>
                 <section class="chat">
-                    <div class="message" v-for="(message, i) in selectedContact.messages" :class="message.status =='received' ? 'received' : 'sent'">
+                    <div class="message" v-for="(message, i) in selectedContact.messages" :class="message.status =='received' ? 'received' : 'sent'" @click="changeMenuIndex()">
                         <div class="text">{{message.message}}</div>
                         <div class="date">{{message.date.slice(11,16)}}</div>
+                        <div class="menu" v-if="menuIndex == true">
+                            <div>Message info</div>
+                            <div>Delete message</div>
+                        </div>
                     </div>
                 </section>
                 <section class="write-message d-flex justify-content-around align-items-center px-1">

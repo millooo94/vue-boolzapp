@@ -197,7 +197,9 @@ const app = new Vue({
                     message: 'Ok',
                     status: 'received'
                 },
-                searchContacts: '',       
+                searchContacts: '',
+
+                menuIndex: true       
                 
     },
     
@@ -218,14 +220,26 @@ const app = new Vue({
         },
 
         includesCharacters(contact) {
+            
             return contact.name.includes(this.searchContacts)
+        },
+
+        includesCharacters(contact) {
+            console.log(contact);
+            return false; //contact.name.includes(this.searchContacts)
         },
 
         currentDate() {
             const date = new Date
             this.newMessageSent.date = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
             this.newMessageReceived.date = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
+        },
+
+        changeMenuIndex() {
+            if (this.menuIndex == false) {
+                this.menuIndex == true
+            }
+
         }
     }
-
 })
