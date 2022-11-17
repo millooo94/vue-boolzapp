@@ -220,14 +220,13 @@ const app = new Vue({
         },
 
         includesCharacters(contact) {
-            
+            console.log('test search:', this.searchContacts);
             return contact.name.includes(this.searchContacts)
         },
-
-        includesCharacters(contact) {
-            console.log(contact);
-            return false; //contact.name.includes(this.searchContacts)
-        },
+        // includesCharacters(contact) {
+        //     console.log(contact);
+        //     return false; //contact.name.includes(this.searchContacts)
+        // },
 
         currentDate() {
             const date = new Date

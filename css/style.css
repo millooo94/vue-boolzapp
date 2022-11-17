@@ -243,10 +243,14 @@ input::placeholder {
     z-index: 10;
     display: flex;
     flex-direction: column;
-    width: 80%;
+    width: 60%;
     border: none;
     background-color: white;
     font-size: .8rem;
+}
+
+.menu div:hover {
+    background-color: #e9ebeb;
 }
 
 
