@@ -48,17 +48,12 @@
                     </div>
                 </section>
                 <section class="chats">
-                    <div class="contacts d-flex align-items-start px-3 py-2" v-for="(chat, i) in contacts" @click="selectContact(i)">
+                    <div class="contacts d-flex align-items-start px-3 py-2" v-if="includesCharacters" v-for="(chat, i) in contacts" @click="selectContact(i)">
                         <div class="img-container me-2">
                             <img class="img-fluid" :src="'img/' + chat.avatar" alt="">
                         </div>
                         <span class="username">{{chat.name}}</span>
-                    </div>
-                    <div class="contacts d-flex align-items-start px-3 py-2" v-if="includesCharacters == true" v-for="(filteredChat, i) in filterContacts" @click="selectContact(i)">
-                        <div class="img-container me-2">
-                            <img class="img-fluid" :src="'img/' + filteredChat.avatar" alt="">
-                        </div>
-                        <span class="username">{{chat.name}}</span>
+                        <div>{{chat.messages[chat.messages.length - 1].message}}...</div>
                     </div>
                 </section>
             </aside>
@@ -94,3 +89,6 @@
     
 </body>
 </html>
+
+
+

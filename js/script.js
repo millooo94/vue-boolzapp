@@ -1,9 +1,6 @@
 const app = new Vue({
     el: '.container',
     data: {
-
-        
-        
         contacts: [
             {
             name: 'Michele',
@@ -200,7 +197,9 @@ const app = new Vue({
                     message: 'Ok',
                     status: 'received'
                 },
-                searchContacts: ''
+                searchContacts: '',
+                
+            
                 
     },
     
@@ -221,15 +220,9 @@ const app = new Vue({
         },
 
         includesCharacters() {
-            this.contacts.forEach(element => {element.name.includes(this.searchContacts)  
-            })
-           ;
+           const arrResult = this.contacts.forEach(element => element.filter(element.name.includes(searchContacts)))
+           return arrResult
         },
-
-        filterContacts() {
-            const result = this.contacts.name.filter(this.includesCharacters)
-            return result
-        }
     }
 
 })
