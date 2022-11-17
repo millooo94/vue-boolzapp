@@ -77,18 +77,18 @@
                     </header>
                 </header>
                 <section class="chat">
-                    <div class="message" v-for="(message, i) in selectedContact.messages" :class="message.status =='received' ? 'received' : 'sent'" @click="changeMenuIndex()">
+                    <div class="message" v-for="(message, i) in selectedContact.messages" :class="message.status =='received' ? 'received' : 'sent'" @click="changeMenuIndex">
                         <div class="text">{{message.message}}</div>
-                        <div class="date">{{message.date.slice(11,16)}}</div>
-                        <div class="menu" v-if="menuIndex == true">
+                        <div class="date">{{message.date}}</div>
+                        <div v-if="isActive" class="menu">
                             <div class="text-center">Message info</div>
-                            <div class="text-center">Delete message</div>
+                            <div class="text-center" @click="deleteMessage(message, i)">Delete message</div>
                         </div>
                     </div>
                 </section>
                 <section class="write-message d-flex justify-content-around align-items-center px-1">
                     <i class="fa-regular fa-face-smile fs-5 "></i>
-                    <input @keyup.enter="addMessage(); answerMessage(); currentDate();" placeholder="Scrivi un messaggio" type="text" v-model="newMessageSent.message">
+                    <input @keyup.enter="addMessage(); answerMessage();" placeholder="Scrivi un messaggio" type="text" v-model="newMessageSentMessage">
                     <i class="fa-solid fa-microphone fs-5 "></i>
                 </section>
             </div>

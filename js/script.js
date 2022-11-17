@@ -186,20 +186,12 @@ const app = new Vue({
                 }
                 ],
                 },
-
-                newMessageSent: {
-                    date:'',
-                    message: '',
-                    status: 'sent'
-                },
-                newMessageReceived: {
-                    date: '', 
-                    message: 'Ok',
-                    status: 'received'
-                },
                 searchContacts: '',
-
-                menuIndex: true       
+                newMessageSentMessage: '',
+                newMessageSentDate: '',
+                newMessageReceivedMessage: 'Ok',
+                newMessageReceivedDate: '',
+                isActive: false       
                 
     },
     
@@ -207,38 +199,58 @@ const app = new Vue({
         selectContact(index){
             this.selectedContact = this.contacts[index]
         },
+
         addMessage() {
-            if (this.newMessageSent.message.trim()) {
-                this.newMessageSent.message = this.newMessageSent.message.trim();
-                this.selectedContact.messages.push(this.newMessageSent),
-                this.newMessageSent.message = '';
+            if (this.newMessageSentMessage.trim()) {
+                this.selectedContact.messages.push({date: this.currentSentDate(), message: this.newMessageSentMessage.trim(), status: 'sent'}),
+                this.newMessageSentMessage = '';
                }
            },
-
+        
+        
         answerMessage() {
-            setTimeout(() => this.selectedContact.messages.push({...this.newMessageReceived}), 2000);
+            setTimeout(() => this.selectedContact.messages.push({date: this.currentReceivedDate(), message: this.newMessageReceivedMessage, status: 'received'}), 2000);
+            this.newMessageReceivedDate = '';
         },
+
 
         includesCharacters(contact) {
             console.log('test search:', this.searchContacts);
             return contact.name.includes(this.searchContacts)
         },
-        // includesCharacters(contact) {
-        //     console.log(contact);
-        //     return false; //contact.name.includes(this.searchContacts)
-        // },
 
-        currentDate() {
+        currentReceivedDate() {
             const date = new Date
-            this.newMessageSent.date = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
-            this.newMessageReceived.date = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
+            this.newMessageReceivedDate = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
+            this.newMessageReceivedDate = this.newMessageReceivedDate.slice(11, 16)
+            return this.newMessageReceivedDate
         },
-
-        changeMenuIndex() {
-            if (this.menuIndex == false) {
-                this.menuIndex == true
+        
+        currentSentDate() {
+            const date = new Date
+            this.newMessageSentDate = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
+            this.newMessageSentDate = this.newMessageSentDate.slice(11, 16)
+            return this.newMessageSentDate
+        },
+        changeMenuIndex(){
+            this.isActive = !this.isActive
+        },
+        deleteMessage(index){
+          this.selectedContact.messages.splice(index, 1)
+        },
+        okok(i){
+            if(selectedContact.messages[i] == true) {
+                isActive = true
             }
-
         }
+
+
+
     }
 })
+
+
+
+
+
+
