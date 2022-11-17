@@ -199,22 +199,22 @@ input::placeholder {
     flex-wrap: wrap;
 }
 
-.sent {
+.received {
     width: fit-content;
     padding: .6rem;
     border-radius: 6px;
     background-color: white;
     color: black;
     font-size: .8rem;
-    align-self: flex-end;
+    align-self: flex-start;
 }
 
-.received {
+.sent {
     width: fit-content;
     padding: .6rem;
     border-radius: 6px;
     background-color: #d5f9ba;
     color: black;
     font-size: .8rem;
-    align-self: flex-start;
+    align-self: flex-end;
 }

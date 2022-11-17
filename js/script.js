@@ -190,7 +190,17 @@ const app = new Vue({
                 ],
                 },
 
-                isReceived: null
+                newMessageSent: {
+                    date: '10/01/2020 16:15:22',
+                    message: '',
+                    status: 'sent'
+                },
+                newMessageReceived: {
+                    date: '10/01/2020 16:15:22',
+                    message: 'Ok',
+                    status: 'received'
+                },
+                searchContacts: ''
                 
     },
     
@@ -198,14 +208,28 @@ const app = new Vue({
         selectContact(index){
             this.selectedContact = this.contacts[index]
         },
+        addMessage() {
+            if (this.newMessageSent.message.trim()) {
+                this.newMessageSent.message = this.newMessageSent.message.trim();
+                this.selectedContact.messages.push({...this.newMessageSent}),
+                this.newMessageSent.message = '';
+               }
+           },
 
-        isReceivedSelector(index) {
-            if(this.selectedContact.messages[index].status == 'received'){
-                this.isReceived = true
-            } else {
-                this.isReceived = false
-            }
-            return this.isReceived
-        } 
-    },
+        answerMessage() {
+            setTimeout(() => this.selectedContact.messages.push({...this.newMessageReceived}), 2000);
+        },
+
+        includesCharacters() {
+            this.contacts.forEach(element => {element.name.includes(this.searchContacts)  
+            })
+           ;
+        },
+
+        filterContacts() {
+            const result = this.contacts.name.filter(this.includesCharacters)
+            return result
+        }
+    }
+
 })

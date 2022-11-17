@@ -44,13 +44,19 @@
                         <div class="icon-container p-1">
                             <i class="fa-solid fa-magnifying-glass fs-6"></i>
                         </div>
-                        <input type="text" placeholder="cerca o inizia una nuova chat">
+                        <input type="text" placeholder="cerca o inizia una nuova chat" v-model="searchContacts">
                     </div>
                 </section>
                 <section class="chats">
                     <div class="contacts d-flex align-items-start px-3 py-2" v-for="(chat, i) in contacts" @click="selectContact(i)">
                         <div class="img-container me-2">
                             <img class="img-fluid" :src="'img/' + chat.avatar" alt="">
+                        </div>
+                        <span class="username">{{chat.name}}</span>
+                    </div>
+                    <div class="contacts d-flex align-items-start px-3 py-2" v-if="includesCharacters == true" v-for="(filteredChat, i) in filterContacts" @click="selectContact(i)">
+                        <div class="img-container me-2">
+                            <img class="img-fluid" :src="'img/' + filteredChat.avatar" alt="">
                         </div>
                         <span class="username">{{chat.name}}</span>
                     </div>
@@ -73,13 +79,13 @@
                     </header>
                 </header>
                 <section class="chat">
-                    <div v-for="(message, i) in selectedContact.messages" :class="isReceived ? 'received' : 'sent'">
+                    <div v-for="(message, i) in selectedContact.messages" :class="message.status =='received' ? 'received' : 'sent'">
                         {{message.message}}
                     </div>
                 </section>
                 <section class="write-message d-flex justify-content-around align-items-center px-1">
                     <i class="fa-regular fa-face-smile fs-5 "></i>
-                    <input placeholder="Scrivi un messaggio" type="text">
+                    <input @keyup.enter="addMessage(); answerMessage()" placeholder="Scrivi un messaggio" type="text" v-model="newMessageSent.message">
                     <i class="fa-solid fa-microphone fs-5 "></i>
                 </section>
             </div>
