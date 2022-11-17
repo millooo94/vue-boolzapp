@@ -193,28 +193,88 @@ input::placeholder {
 .chat {
     padding: 3rem 5rem 3rem 5rem;
     display: flex;
-    gap: .5rem;
+    gap: 1rem;
     align-items: center;
     flex-direction: column;
     flex-wrap: wrap;
 }
 
 .received {
-    width: fit-content;
-    padding: .6rem;
+    width: 40%;
+    padding: .2rem;
     border-radius: 6px;
     background-color: white;
     color: black;
     font-size: .8rem;
     align-self: flex-start;
+    position: relative;
 }
 
 .sent {
-    width: fit-content;
-    padding: .6rem;
+    width: 40%;
+    padding: .2rem;
     border-radius: 6px;
     background-color: #d5f9ba;
     color: black;
     font-size: .8rem;
     align-self: flex-end;
+    position: relative;
+}
+
+
+.chat .message .date {
+    position: absolute;
+    bottom: .2rem;
+    right: .2rem;
+    display: flex;
+    justify-content: flex-end;
+    font-size: .6rem;
+    color: #6b7376;
+    
+}
+
+.chat .message .text {
+    display: flex;
+    align-items: center;
+    padding: .6rem;
+}
+
+.chats .contacts {
+    position: relative;
+}
+
+.contacts .contacts-text-container {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.contacts .img-container {
+    clip-path: circle();
+    width: 10.17%;
+    object-fit: contain;   
+}
+
+
+.contacts .contacts-text-container .username{
+    font-size: .8rem;
+    color: black;
+    font-weight: bold;
+}
+
+
+.contacts .contacts-text-container .text{
+    font-size: .7rem;
+    color: #6b7376;
+}
+
+.contacts .contacts-text-container .date {
+    position: absolute;
+    up: .2rem;
+    right: .2rem;
+    display: flex;
+    justify-content: flex-end;
+    font-size: .6rem;
+    color: #6b7376;
+
 }

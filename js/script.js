@@ -188,18 +188,16 @@ const app = new Vue({
                 },
 
                 newMessageSent: {
-                    date: '10/01/2020 16:15:22',
+                    date:'',
                     message: '',
                     status: 'sent'
                 },
                 newMessageReceived: {
-                    date: '10/01/2020 16:15:22',
+                    date: '', 
                     message: 'Ok',
                     status: 'received'
                 },
-                searchContacts: '',
-                
-            
+                searchContacts: '',       
                 
     },
     
@@ -210,7 +208,7 @@ const app = new Vue({
         addMessage() {
             if (this.newMessageSent.message.trim()) {
                 this.newMessageSent.message = this.newMessageSent.message.trim();
-                this.selectedContact.messages.push({...this.newMessageSent}),
+                this.selectedContact.messages.push(this.newMessageSent),
                 this.newMessageSent.message = '';
                }
            },
@@ -219,10 +217,15 @@ const app = new Vue({
             setTimeout(() => this.selectedContact.messages.push({...this.newMessageReceived}), 2000);
         },
 
-        includesCharacters() {
-           const arrResult = this.contacts.forEach(element => element.filter(element.name.includes(searchContacts)))
-           return arrResult
+        includesCharacters(contact) {
+            return contact.name.includes(this.searchContacts)
         },
+
+        currentDate() {
+            const date = new Date
+            this.newMessageSent.date = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
+            this.newMessageReceived.date = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
+        }
     }
 
 })

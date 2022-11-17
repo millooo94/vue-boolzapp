@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js" defer></script>
     <script src="js/script.js" defer></script>
-</head>
+    
 <body class="">
     <div class="green-bar"></div>
     <div class="container">
@@ -48,12 +48,15 @@
                     </div>
                 </section>
                 <section class="chats">
-                    <div class="contacts d-flex align-items-start px-3 py-2" v-if="includesCharacters" v-for="(chat, i) in contacts" @click="selectContact(i)">
+                    <div class="contacts d-flex align-items-start px-3 py-2" v-show="includesCharacters(chat)" v-for="(chat, i) in contacts" @click="selectContact(i)">
                         <div class="img-container me-2">
                             <img class="img-fluid" :src="'img/' + chat.avatar" alt="">
                         </div>
-                        <span class="username">{{chat.name}}</span>
-                        <div>{{chat.messages[chat.messages.length - 1].message}}...</div>
+                        <div class="contacts-text-container">
+                            <div class="username">{{chat.name}}</div>
+                            <div class="text">{{chat.messages[chat.messages.length - 1].message}}...</div>
+                            <div class="date">{{chat.messages[chat.messages.length - 1].date.slice(11,16)}}</div>
+                        </div>
                     </div>
                 </section>
             </aside>
@@ -74,13 +77,14 @@
                     </header>
                 </header>
                 <section class="chat">
-                    <div v-for="(message, i) in selectedContact.messages" :class="message.status =='received' ? 'received' : 'sent'">
-                        {{message.message}}
+                    <div class="message" v-for="(message, i) in selectedContact.messages" :class="message.status =='received' ? 'received' : 'sent'">
+                        <div class="text">{{message.message}}</div>
+                        <div class="date">{{message.date.slice(11,16)}}</div>
                     </div>
                 </section>
                 <section class="write-message d-flex justify-content-around align-items-center px-1">
                     <i class="fa-regular fa-face-smile fs-5 "></i>
-                    <input @keyup.enter="addMessage(); answerMessage()" placeholder="Scrivi un messaggio" type="text" v-model="newMessageSent.message">
+                    <input @keyup.enter="addMessage(); answerMessage(); currentDate();" placeholder="Scrivi un messaggio" type="text" v-model="newMessageSent.message">
                     <i class="fa-solid fa-microphone fs-5 "></i>
                 </section>
             </div>
