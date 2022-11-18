@@ -6,15 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boolzapp - a (not very) innovative messaging platform</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+		[v-cloak] {
+			display: none;
+		}
+	</style>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" 
     integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/luxon@3.1.0/build/global/luxon.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js" defer></script>
     <script src="js/script.js" defer></script>
     
 <body class="">
     <div class="green-bar"></div>
-    <div class="container">
+    <div class="container" v-cloak>
         <div class="chat-container d-flex">
             <aside>
                 <header class="d-flex justify-content-between align-items-center ps-2 pe-3">
@@ -48,7 +54,7 @@
                     </div>
                 </section>
                 <section class="chats">
-                    <div class="contacts d-flex align-items-start px-3 py-2" v-if="includesCharacters(chat)" v-for="(chat, i) in contacts" @click="selectContact(i)">
+                    <div class="contacts d-flex align-items-start px-3 py-2" v-if="includesCharacters(chat)" v-for="(chat, i) in contacts" @click="selectContact(i)" :key:="chat.name">
                         <div class="img-container me-2">
                             <img class="img-fluid" :src="'img/' + chat.avatar" alt="">
                         </div>
@@ -68,6 +74,7 @@
                                 <img class="img-fluid" :src="'img/' + selectedContact.avatar" alt="">
                             </div>
                             <span class="username">{{selectedContact.name}}</span>
+                            <span>{{lastAccess}}</span>
                         </div>
                         <div class="right-block">
                             <i class="fa-solid fa-magnifying-glass fs-5"></i>
@@ -77,18 +84,18 @@
                     </header>
                 </header>
                 <section class="chat">
-                    <div class="message" v-for="(message, i) in selectedContact.messages" :class="message.status =='received' ? 'received' : 'sent'" @click="changeMenuIndex">
+                    <div class="message" v-for="(message, i) in selectedContact.messages" :key="message.date" :class="message.status =='received' ? 'received' : 'sent'" @click="changeMenuIndex(i)">
                         <div class="text">{{message.message}}</div>
-                        <div class="date">{{message.date}}</div>
-                        <div v-if="isActive" class="menu">
+                        <div class="date">{{message.date.slice(11,16)}}</div>
+                        <div v-if="message.isActive == true" class="menu">
                             <div class="text-center">Message info</div>
-                            <div class="text-center" @click="deleteMessage(message, i)">Delete message</div>
+                            <div class="text-center" @click="selectedContact.messages.length > 0 ? deleteMessage(i) : ''">Delete message</div>
                         </div>
                     </div>
                 </section>
                 <section class="write-message d-flex justify-content-around align-items-center px-1">
                     <i class="fa-regular fa-face-smile fs-5 "></i>
-                    <input @keyup.enter="addMessage(); answerMessage();" placeholder="Scrivi un messaggio" type="text" v-model="newMessageSentMessage">
+                    <input @keyup.enter="sendMessage" placeholder="Scrivi un messaggio" type="text" v-model="newMessage">
                     <i class="fa-solid fa-microphone fs-5 "></i>
                 </section>
             </div>
