@@ -6,6 +6,7 @@ const app = new Vue({
             name: 'Michele',
             avatar: 'avatar_1.jpg',
             visible: true,
+            lastAccess: '',
             messages: [
             {
             date: '10/01/2020 15:30:55',
@@ -31,6 +32,7 @@ const app = new Vue({
             name: 'Fabio',
             avatar: 'avatar_2.jpg',
             visible: true,
+            lastAccess: '',
             messages: [
             {
             date: '20/03/2020 16:30:00',
@@ -56,6 +58,7 @@ const app = new Vue({
             name: 'Samuele',
             avatar: 'avatar_3.jpg',
             visible: true,
+            lastAccess: '',
             messages: [
             {
             date: '28/03/2020 10:10:40',
@@ -81,6 +84,7 @@ const app = new Vue({
             name: 'Alessandro B.',
             avatar: 'avatar_4.jpg',
             visible: true,
+            lastAccess: '',
             messages: [
             {
             date: '10/01/2020 15:30:55',
@@ -100,6 +104,7 @@ const app = new Vue({
             name: 'Alessandro L.',
             avatar: 'avatar_5.jpg',
             visible: true,
+            lastAccess: '',
             messages: [
             {
             date: '10/01/2020 15:30:55',
@@ -119,6 +124,7 @@ const app = new Vue({
             name: 'Claudia',
             avatar: 'avatar_6.jpg',
             visible: true,
+            lastAccess: '',
             messages: [
             {
             date: '10/01/2020 15:30:55',
@@ -144,6 +150,7 @@ const app = new Vue({
             name: 'Federico',
             avatar: 'avatar_7.jpg',
             visible: true,
+            lastAccess: '',
             messages: [
             {
             date: '10/01/2020 15:30:55',
@@ -163,6 +170,7 @@ const app = new Vue({
             name: 'Davide',
             avatar: 'avatar_8.jpg',
             visible: true,
+            lastAccess: '',
             messages: [
             {
             date: '10/01/2020 15:30:55',
@@ -189,6 +197,7 @@ const app = new Vue({
                 name: 'Michele',
                 avatar: 'avatar_1.jpg',
                 visible: true,
+                lastAccess: '',
                 messages: [
                 {
                 date: '10/01/2020 15:30:55',
@@ -210,12 +219,18 @@ const app = new Vue({
                 }
                 ],
                 },
+
                 searchContacts: '',
                 newMessage: '',
-                lastAccess: 'Ultimo accesso'
-
-                      
                 
+    },
+
+    mounted: function(){
+        this.selectedContact = this.contacts[0];
+        this.selectedContact.lastAccess = `Ultimo accesso oggi alle ${this.selectedContact.messages[this.selectedContact.messages.length - 1].date.slice(11,16)}`
+        setTimeout(() => {
+            this.selectedContact.lastAccess = `Online`
+        }, 7000); 
     },
     
     methods: {
@@ -244,7 +259,13 @@ const app = new Vue({
                     isActive: false
                 });
                 this.newMessage = '';
-                this.lastAccess = 'Sta scrivendo...'
+                setTimeout(() => {
+                    this.selectedContact.lastAccess = 'Online'
+                }, 3000);
+                setTimeout(() => {
+                    this.selectedContact.lastAccess = 'Sta scrivendo...'
+                }, 4000);
+            
                 let receiver = this.selectedContact
                 setTimeout(() => {
                     receiver.messages.push({
@@ -253,15 +274,34 @@ const app = new Vue({
                         status: 'received',
                         isActive: false
                     })
-                    this.lastAccess = `Ultimo accesso oggi alle ${this.selectedContact.messages[this.selectedContact.messages.length - 1].date.slice(11,16)} `
+                    this.selectedContact.lastAccess = 'Online'
                     ;
-                }, 5000);   
+                    setTimeout(() => {
+                        this.selectedContact.lastAccess = `Ultimo accesso oggi alle ${this.selectedContact.messages[this.selectedContact.messages.length - 1].date.slice(11,16)} `
+                    }, 3000);
+                }, 10000);   
             }
 		},
 		getNow() {
 			return luxon.DateTime.now().toFormat('dd/MM/yyyy HH:mm:ss');
-		}
+		},
+        printLastMessage(msx){
+            if(msx.length>0){
+                return msx[msx.length - 1].message;
+            }else{
+                return "";
+            }
+        },
+        printLastMessageDate(msx){
+            if(msx.length>0){
+                return msx[msx.length - 1].date.slice(11,16);
+            }else{
+                return "";
+            }
+        },
+            
     },
+    
 
 
     

@@ -60,8 +60,8 @@
                         </div>
                         <div class="contacts-text-container">
                             <div class="username">{{chat.name}}</div>
-                            <div class="text">{{chat.messages[chat.messages.length - 1].message}}...</div>
-                            <div class="date">{{chat.messages[chat.messages.length - 1].date.slice(11,16)}}</div>
+                            <div class="text">{{ printLastMessage(chat.messages) }}</div>
+                            <div class="date">{{ printLastMessageDate(chat.messages) }}</div>
                         </div>
                     </div>
                 </section>
@@ -73,8 +73,10 @@
                             <div class="img-container me-2">
                                 <img class="img-fluid" :src="'img/' + selectedContact.avatar" alt="">
                             </div>
-                            <span class="username">{{selectedContact.name}}</span>
-                            <span>{{lastAccess}}</span>
+                            <div class="username-status">
+                                <span class="username">{{selectedContact.name}}</span>
+                                <span class="last-access">{{selectedContact.lastAccess}}</span>
+                            </div>
                         </div>
                         <div class="right-block">
                             <i class="fa-solid fa-magnifying-glass fs-5"></i>
@@ -90,14 +92,15 @@
                         <div class="date">{{message.date.slice(11,16)}}</div>
                         <div v-if="message.isActive == true" class="menu">
                             <div class="text-center">Message info</div>
-                            <div class="text-center" @click="selectedContact.messages.length > 0 ? deleteMessage(i) : ''">Delete message</div>
+                            <div class="text-center" @click="deleteMessage(i)">Delete message</div>
                         </div>
                     </div>
                 </section>
                 <section class="write-message d-flex justify-content-around align-items-center px-1">
                     <i class="fa-regular fa-face-smile fs-5 "></i>
                     <input @keyup.enter="sendMessage" placeholder="Scrivi un messaggio" type="text" v-model="newMessage">
-                    <i class="fa-solid fa-microphone fs-5 "></i>
+                    <i class="fa-solid fa-paper-plane" v-if="newMessage != ''"></i>
+                    <i class="fa-solid fa-microphone fs-5" v-else></i>
                 </section>
             </div>
         </div>

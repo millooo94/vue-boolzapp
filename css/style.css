@@ -148,11 +148,23 @@ aside .chats {
     object-fit: contain;
 }
 
+.contents header .username-status {
+    display: flex;
+    flex-direction: column;
+}
+
 .contents header .username {
     font-size: .8rem;
     color: black;
     font-weight: bold;
 }
+
+
+.contents header .last-access {
+    font-size: .7rem;
+    color: #6b7376;
+}
+
 
 
 .contents header .right-block i {
@@ -196,7 +208,7 @@ input::placeholder {
     gap: 1rem;
     align-items: center;
     flex-direction: column;
-    flex-wrap: wrap;
+
 }
 
 .chat .message {
@@ -239,6 +251,7 @@ input::placeholder {
 .chat .message i {
     position: absolute;
     right: .2rem;
+    color: #6b7376;
 }
 
 .menu {
