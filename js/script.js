@@ -224,8 +224,7 @@ const app = new Vue({
         },
 
         includesCharacters(contact) {
-            console.log('test search:', this.searchContacts);
-            return contact.name.includes(this.searchContacts)
+            return contact.name.toLowerCase().includes(this.searchContacts.toLowerCase())
         },
 
         changeMenuIndex(index){

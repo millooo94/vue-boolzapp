@@ -236,15 +236,22 @@ input::placeholder {
     padding: .6rem;
 }
 
+.chat .message i {
+    position: absolute;
+    right: .2rem;
+}
+
 .menu {
     position: absolute;
     bottom: -1.5rem;
-    right: 4rem;
+    right: 0;
     z-index: 10;
     display: flex;
     flex-direction: column;
-    width: 40%;
+    width: 50%;
     border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 4px #6b7376;
     background-color: white;
     font-size: .8rem;
 }

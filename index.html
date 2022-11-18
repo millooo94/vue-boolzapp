@@ -84,7 +84,8 @@
                     </header>
                 </header>
                 <section class="chat">
-                    <div class="message" v-for="(message, i) in selectedContact.messages" :key="message.date" :class="message.status =='received' ? 'received' : 'sent'" @click="changeMenuIndex(i)">
+                    <div class="message" v-for="(message, i) in selectedContact.messages" :key="message.date" :class="message.status =='received' ? 'received' : 'sent'">
+                        <i class="fa-solid fa-chevron-down" @click="changeMenuIndex(i)"></i>
                         <div class="text">{{message.message}}</div>
                         <div class="date">{{message.date.slice(11,16)}}</div>
                         <div v-if="message.isActive == true" class="menu">
