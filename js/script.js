@@ -227,17 +227,21 @@ const app = new Vue({
 
     mounted: function(){
         this.selectedContact = this.contacts[0];
+        setTimeout(() => {
+            this.selectedContact.lastAccess = `Online`
+        },5000); 
         this.contacts.forEach(element => {
             element.lastAccess = `Ultimo accesso oggi alle ${this.selectedContact.messages[this.selectedContact.messages.length - 1].date.slice(11,16)}`
         });
-        setTimeout(() => {
-            this.selectedContact.lastAccess = `Online`
-        }, 7000); 
+        
     },
     
     methods: {
         selectContact(index){
             this.selectedContact = this.contacts[index]
+            setTimeout(() => {
+                this.selectedContact.lastAccess = `Online`
+            },5000); 
         },
 
         includesCharacters(contact) {
