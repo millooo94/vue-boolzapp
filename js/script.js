@@ -197,7 +197,7 @@ const app = new Vue({
                 name: 'Michele',
                 avatar: 'avatar_1.jpg',
                 visible: true,
-                lastAccess: '',
+                lastAccess: function(){return this.messages[this.messages.length - 1].date}, 
                 messages: [
                 {
                 date: '10/01/2020 15:30:55',
@@ -221,13 +221,14 @@ const app = new Vue({
                 },
 
                 searchContacts: '',
-                newMessage: '',
-                
+                newMessage: '', 
     },
 
     mounted: function(){
         this.selectedContact = this.contacts[0];
-        this.selectedContact.lastAccess = `Ultimo accesso oggi alle ${this.selectedContact.messages[this.selectedContact.messages.length - 1].date.slice(11,16)}`
+        this.contacts.forEach(element => {
+            element.lastAccess = `Ultimo accesso oggi alle ${this.selectedContact.messages[this.selectedContact.messages.length - 1].date.slice(11,16)}`
+        });
         setTimeout(() => {
             this.selectedContact.lastAccess = `Online`
         }, 7000); 
@@ -299,12 +300,11 @@ const app = new Vue({
                 return "";
             }
         },
+        keyValue() {
+            return this.lastAccess = this.selectedContact.lastAccess = `Ultimo accesso oggi alle ${this.selectedContact.messages[this.selectedContact.messages.length - 1].date.slice(11,16)} `
+        }
             
     },
-    
-
-
-    
 })
 
 

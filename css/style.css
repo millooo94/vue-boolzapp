@@ -1,8 +1,37 @@
+/* General Styles */
+
+.my_black_text {
+    font-size: .8rem;
+    color: black;
+    font-weight: bold;
+}
+
+.my_gray_text {
+    font-size: .7rem;
+    color: #6b7376;
+}
+
+.my_darkgray_color {
+    color: #6b7376;
+}
+
+.my_lightgray_color {
+    color: #b1b1b1;
+}
+
+.my_lightblue_color {
+    color: #8edafc;
+}
+
 body {
     background-color: #dadbd4 !important;
     height: 100vh;
     position: relative !important;
 }
+
+
+
+/* Background */
 
 .green-bar {
     width: 100%;
@@ -10,17 +39,27 @@ body {
     background-color: #009688;
 }
 
+
+
+/* Chat container */
+
 .chat-container {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 82%;
+    min-width: 672px;
     height: 95%;
 }
 
+
+
+/* Aside */
+
 aside {
-    width: 30%;
+    flex: 0 0 30%;
+    min-width: 285px;
     height: 100%;
 }
 
@@ -39,17 +78,6 @@ aside header .img-container {
     object-fit: contain;
 }
 
-aside header .username {
-    font-size: .8rem;
-    color: black;
-    font-weight: bold;
-}
-
-
-aside header .right-block i {
-    color: #b1b1b1;
-}
-
 aside .search {
     height: 7rem;
 }
@@ -65,23 +93,9 @@ aside .search .notification .icon-container {
     background-color: white;
 }
 
-aside .search .notification .icon-container i {
-    color: #8edafc;
-}
-
 aside .search .notification .right-block {
     display: flex;
     flex-direction: column;
-}
-
-aside .search .notification span {
-    font-size: .8rem;
-    font-weight: bold;
-}
-
-aside .search .notification a {
-    font-size: .7rem;
-    color: #6b7376;
 }
 
 aside .search .write-search {
@@ -96,10 +110,6 @@ aside .search .write-search .icon-container {
     width: 15%;
     height: 75%;
     background-color: white;
-}
-
-aside .search .write-search .icon-container i {
-    color: #6b7376;
 }
 
 aside .search .write-search input {
@@ -126,12 +136,39 @@ aside .chats {
     width: 15%;
 }
 
-
-.contents {
-    width: 70%;
-    height: 100%;
+.chats .contacts {
+    position: relative;
 }
 
+.contacts .contacts-text-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.contacts .img-container {
+    clip-path: circle();
+    width: 10.17%;
+    object-fit: contain;   
+}
+
+.contacts .contacts-text-container .date {
+    position: absolute;
+    top: .2rem;
+    right: .2rem;
+    display: flex;
+    justify-content: flex-end;
+    font-size: .6rem;
+    color: #6b7376;
+}
+
+
+
+/* Chatspace */
+
+.contents {
+    flex: 0 1 70%;
+    height: 100%;
+}
 
 .contents header {
     height: 3.5rem;
@@ -152,25 +189,6 @@ aside .chats {
     display: flex;
     flex-direction: column;
 }
-
-.contents header .username {
-    font-size: .8rem;
-    color: black;
-    font-weight: bold;
-}
-
-
-.contents header .last-access {
-    font-size: .7rem;
-    color: #6b7376;
-}
-
-
-
-.contents header .right-block i {
-    color: #b1b1b1;
-}
-
 
 .contents .chat {
     height: calc(100% - 7rem);
@@ -197,27 +215,23 @@ input::placeholder {
     font-size: .8rem;
 }
 
-.write-message i {
-    color: #6b7376;
-}
-
-
 .chat {
     padding: 3rem 5rem 3rem 5rem;
     display: flex;
     gap: 1rem;
     align-items: center;
     flex-direction: column;
-
 }
 
 .chat .message {
     position: relative;
-    width: 40%;
     padding: .2rem;
     border-radius: 6px;
     color: black;
     font-size: .8rem;
+    flex: 0 1 auto;
+    min-width: 125px;
+    width: 40%;
 }
 
 .received {
@@ -230,7 +244,6 @@ input::placeholder {
     align-self: flex-end;
 }
 
-
 .chat .message .date {
     position: absolute;
     bottom: .2rem;
@@ -238,8 +251,6 @@ input::placeholder {
     display: flex;
     justify-content: flex-end;
     font-size: .6rem;
-    color: #6b7376;
-    
 }
 
 .chat .message .text {
@@ -251,7 +262,6 @@ input::placeholder {
 .chat .message i {
     position: absolute;
     right: .2rem;
-    color: #6b7376;
 }
 
 .menu {
@@ -274,41 +284,8 @@ input::placeholder {
 }
 
 
-.chats .contacts {
-    position: relative;
-}
-
-.contacts .contacts-text-container {
-    display: flex;
-    flex-direction: column;
-}
 
 
-.contacts .img-container {
-    clip-path: circle();
-    width: 10.17%;
-    object-fit: contain;   
-}
 
 
-.contacts .contacts-text-container .username{
-    font-size: .8rem;
-    color: black;
-    font-weight: bold;
-}
 
-
-.contacts .contacts-text-container .text{
-    font-size: .7rem;
-    color: #6b7376;
-}
-
-.contacts .contacts-text-container .date {
-    position: absolute;
-    top: .2rem;
-    right: .2rem;
-    display: flex;
-    justify-content: flex-end;
-    font-size: .6rem;
-    color: #6b7376;
-}
