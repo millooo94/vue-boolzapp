@@ -197,7 +197,7 @@ const app = new Vue({
                 name: 'Michele',
                 avatar: 'avatar_1.jpg',
                 visible: true,
-                lastAccess: function(){return this.messages[this.messages.length - 1].date}, 
+                lastAccess: '',
                 messages: [
                 {
                 date: '10/01/2020 15:30:55',
@@ -221,7 +221,8 @@ const app = new Vue({
                 },
 
                 searchContacts: '',
-                newMessage: '', 
+                newMessage: '',
+                answers : ['Ok', 'Va bene', 'Forse', 'Vediamo', 'Che fai?', 'Ci vediamo da Luca', 'Siamo ai Cappu', 'Caffè?', 'Venite da Sketch', 'Caliamo a CT?', 'Panino?']
     },
 
     mounted: function(){
@@ -262,16 +263,15 @@ const app = new Vue({
                 this.newMessage = '';
                 setTimeout(() => {
                     this.selectedContact.lastAccess = 'Online'
+                    setTimeout(() => {
+                        this.selectedContact.lastAccess = 'Sta scrivendo...'
+                    }, 4000);
                 }, 3000);
-                setTimeout(() => {
-                    this.selectedContact.lastAccess = 'Sta scrivendo...'
-                }, 4000);
-            
                 let receiver = this.selectedContact
                 setTimeout(() => {
                     receiver.messages.push({
                         date: this.getNow(),
-                        message: 'Ok',
+                        message: this.answers[Math.floor(Math.random() * this.answers.length)],
                         status: 'received',
                         isActive: false
                     })
@@ -300,15 +300,8 @@ const app = new Vue({
                 return "";
             }
         },
-        keyValue() {
-            return this.lastAccess = this.selectedContact.lastAccess = `Ultimo accesso oggi alle ${this.selectedContact.messages[this.selectedContact.messages.length - 1].date.slice(11,16)} `
-        }
-            
     },
 })
-
-
-
 
 
 
