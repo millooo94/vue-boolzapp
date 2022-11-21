@@ -239,9 +239,10 @@ const app = new Vue({
     methods: {
         selectContact(index){
             this.selectedContact = this.contacts[index]
+            let receiver = this.selectedContact
             setTimeout(() => {
-                this.selectedContact.lastAccess = `Online`
-            },5000); 
+                receiver.lastAccess = `Online`
+            },7000); 
         },
 
         includesCharacters(contact) {
